@@ -1,3 +1,14 @@
+# Creating the app on Facebook
+
+  * go to [Facebook Developes](https://www.facebook.com/developers/)
+  * click *Create New App*
+    * enter your app name
+    * add **Cloud Service** with environment **PHP** (you wont be writing any PHP)
+    * follow the steps: clone your app and get a heroku account
+
+
+# Cloning the template
+
 After cloning the heroku app, `cd` into your directory and override the app
 with this template.
 
@@ -10,3 +21,5 @@ with this template.
     git merge template/master
     git branch -d template/master
     git remote rm template
+
+# Fiddle !
