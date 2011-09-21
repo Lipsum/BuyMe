@@ -29,4 +29,4 @@ with this template.
 
 # Fiddle !
 
-Edit your APP id in `index.php`, fiddle, play around.
+Edit your APP id in `scripts/app.js`, fiddle, play around.
