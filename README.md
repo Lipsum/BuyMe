@@ -1,6 +1,6 @@
 # Creating the app on Facebook
 
-  * go to [Facebook Developes](https://www.facebook.com/developers/)
+  * go to [Facebook Developers](https://www.facebook.com/developers/)
   * click *Create New App*
     * enter your app name
     * add **Cloud Service** with environment **PHP** (you wont be writing any PHP)
