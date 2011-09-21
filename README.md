@@ -22,4 +22,9 @@ with this template.
     git branch -d template/master
     git remote rm template
 
+# Using Github
+
+  * register on Github and create a repo
+  * follow the steps for *existing repo*
+
 # Fiddle !
