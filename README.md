@@ -15,6 +15,7 @@ with this template.
     git remote rename origin heroku
     git remote add template git://github.com/afriggeri/algores-template.git
     git fetch template
+    git checkout template/master
     git checkout -b template/master
     git merge -s ours master
     git checkout master
