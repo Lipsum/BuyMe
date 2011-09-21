@@ -28,3 +28,5 @@ with this template.
   * follow the steps for *existing repo*
 
 # Fiddle !
+
+Edit your APP id in `index.php`, fiddle, play around.
