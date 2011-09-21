@@ -11,7 +11,7 @@ $(function(){
       if (!response.session) return $('#login').show();
 
       //$('#login').hide();
-      document.getElementbyId("boutonlogin").value = "Log out";
+      document.getElementById("boutonlogin").value = "Log out";
      // $('#logout').show();
 
       FB.api('/me/friends', function(response){
