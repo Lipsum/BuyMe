@@ -30,4 +30,9 @@ with this template.
 
 # Fiddle !
 
-Edit your APP id in `scripts/app.js`, fiddle, play around.
+Edit your APP id in `scripts/app.js`, fiddle, play around. Don't forget to commit and push:
+
+    git add scripts/app.js
+    git commit -m "commit message"
+    git push # push to github
+    git push heroku # push to the webserver
