@@ -11,7 +11,7 @@ $(function(){
       if (!response.session) return $('#login').show();
 
       //$('#login').hide();
-      $('#logout').show();
+     // $('#logout').show();
 
       FB.api('/me/friends', function(response){
         response.data.forEach(function(friend){
