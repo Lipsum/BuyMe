@@ -10,6 +10,7 @@
 <body>
   <div id="fb-root"></div>
   <div id="login"><fb:login-button>Connect with Facebook</fb:login-button></div>
+  <div id="login"><fb:logout-button>Logout with Facebook</fb:logout-button></div>
   
   <pre id="friends"></pre>
 </body>
