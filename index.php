@@ -9,8 +9,7 @@
 </head>
 <body>
   <div id="fb-root"></div>
-  <div id="login"><fb:login-button>Connect with Facebook</fb:login-button></div>
-  <div id="login"><fb:logout-button>Logout with Facebook</fb:logout-button></div>
+  <div id="login"><fb:login-button autologoutlink="true" size="medium" background="white" length="short">Connect with Facebook</fb:login-button></div>
   
   <pre id="friends"></pre>
 </body>
