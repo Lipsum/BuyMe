@@ -13,7 +13,7 @@ After cloning the heroku app, `cd` into your directory and override the app
 with this template.
 
     git remote rename origin heroku
-    git remote add template git@github.com:afriggeri/algores-template.git
+    git remote add template git://github.com/afriggeri/algores-template.git
     git fetch template
     git checkout -b template/master
     git merge -s ours master
