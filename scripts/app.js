@@ -25,7 +25,7 @@ $(function(){
     FB.Event.subscribe('auth.sessionChange', session_handle);
     FB.Event.subscribe('auth.login', session_handle);
     FB.getLoginStatus(session_handle);
-    FB.Event.subscribe("auth.logout", function() {window.location = "/")});  
+    FB.Event.subscribe("auth.logout", function() {window.location = "/");});  
   };
   (function() {
     var e = document.createElement('script'); e.async = true;
