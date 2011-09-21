@@ -23,6 +23,7 @@ $(function(){
     FB.Event.subscribe('auth.sessionChange', session_handle);
     FB.Event.subscribe('auth.login', session_handle);
     FB.getLoginStatus(session_handle);
+    FB.Event.subscribe("auth.logout", function() {window.location = '/logout'});  
     FB.logout(function(response) {
   // user is now logged out
   });
