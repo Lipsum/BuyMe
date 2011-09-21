@@ -10,7 +10,7 @@ $(function(){
     var session_handle = function(response){
       if (!response.session) return $('#login').show();
 
-      $('#login').hide();
+      //$('#login').hide();
 
       FB.api('/me/friends', function(response){
         response.data.forEach(function(friend){
