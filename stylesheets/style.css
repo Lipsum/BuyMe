@@ -1,0 +1,10 @@
+body {
+  font-family:sans-serif;
+  background:#eeeeee;
+  color:#333333;
+}
+#login {
+  display:none;
+  margin-bottom:20px;
+  text-align:center;
+}
