@@ -7,34 +7,15 @@ $(function(){
       xfbml  : true
     });
 
-    
-    FB.api(                           {
-	    method: 'friends.getMutualFriends',
-		target_uid: 'INSERT ANOTHER FRIEND ID HERE'
-		},
-	function(response) {
-	    $('#friends').append('<div>'+friend.getMutualFriends()+'</div>');
-	    
-	    //       console.info(response);
-	}
-	);
-
-    var session_handle = function(response){
-      if (!response.session) return $('#login').show();
-
-      document.getElementById("boutonlogin").value = "Log out";
-
       FB.api('/me/friends', function(response){
         response.data.forEach(function(friend){
-		$('#friends').append('<div>'+friend.getMutualFriends()+'</div>');
-		//          $('#friends').append('<div>'+JSON.stringify(friend)+'</div>');
+		//$('#friends').append('<div>'+friend.getMutualFriends()+'</div>');
+		$('#friends').append('<div>'+JSON.stringify(friend)+'</div>');
         });
       });
 
       FB.XFBML.parse();
     };
-//    
-
 
     FB.Event.subscribe('auth.sessionChange', session_handle);
     FB.Event.subscribe('auth.login', session_handle);
