@@ -10,8 +10,8 @@
 <body>
 <p id="userName"></p>
 
-  /* <div id="fb-root"></div> */
-  /* <div id="Connect with Facebook"><fb:login-button id="boutonlogin" value = "Connect with Facebook" autologoutlink="true" size="medium" background="white" length="short"></fb:login-button></div> */
-  /* <pre id="friends"></pre> */
+  <div id="fb-root"></div> 
+  <div id="Connect with Facebook"><fb:login-button id="boutonlogin" value = "Connect with Facebook" autologoutlink="true" size="medium" background="white" length="short"></fb:login-button></div> 
+  <pre id="friends"></pre> 
 </body>
 </html>
