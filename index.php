@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-  <title>AlgoRes template</title>
+  <title>BuyMe!</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="scripts/raphael-min.js" type="text/javascript" charset="utf-8"></script>
   <script src="scripts/app.js" type="text/javascript" charset="utf-8"></script>
