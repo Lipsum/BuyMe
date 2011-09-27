@@ -16,7 +16,7 @@ $(function(){
 
       FB.api('/me/friends', function(response){
         response.data.forEach(function(friend){
-          $('#friends').append('<div>'+JSON.stringify(friend)+'</div>');
+		$('#friends').append('<div>'+ friend.name/*JSON.stringify(friend)*/+'</div>');
         });
       });
 
