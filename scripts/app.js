@@ -7,6 +7,29 @@ $(function(){
       xfbml  : true
     });
 
+
+ FB.api(
+           {
+             method: 'fql.query',
+             query: 'SELECT id FROM profile WHERE id IN (SELECT uid2 FROM friend WHERE uid1=me())'
+           },
+           function(response) {
+             $.each(response, function(json) {
+ 		    //                console.info(response[json].id);
+                         FB.api(
+                           {
+                             method: 'friends.getMutualFriends',
+                             target_uid: 'INSERT ANOTHER FRIEND ID HERE'
+                           },
+                           function(response) {
+      
+			       //       console.info(response);
+                          }
+				);
+                 return false;
+             });
+           }
+         );
     var session_handle = function(response){
       if (!response.session) return $('#login').show();
 
@@ -21,29 +44,7 @@ $(function(){
 
       FB.XFBML.parse();
     };
-//     FB.api(
-//           {
-//             method: 'fql.query',
-//             query: 'SELECT id FROM profile WHERE id IN (SELECT uid2 FROM friend WHERE uid1=me())'
-//           },
-//           function(response) {
-//             $.each(response, function(json) {
-// 		    //                console.info(response[json].id);
-//                         FB.api(
-//                           {
-//                             method: 'friends.getMutualFriends',
-//                             target_uid: 'INSERT ANOTHER FRIEND ID HERE'
-//                           },
-//                           function(response) {
-			      
-// 			      //       console.info(response);
-//                           }
-//                           );
-//                 return false;
-//             });
-
-//           }
-//         );
+//    
 
 
     FB.Event.subscribe('auth.sessionChange', session_handle);
