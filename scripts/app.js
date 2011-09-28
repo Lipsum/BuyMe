@@ -13,23 +13,26 @@ $(function(){
       if (!response.session) return $('#login').show();
 
       document.getElementById("boutonlogin").value = "Log out";
-      
+      /*
       FB.api('/me/friends', function(response){
         response.data.forEach(function(friend){
-		//$('#friends').append('<div>'+ friend.name/*JSON.stringify(friend)*/+'</div>');
+		//$('#friends').append('<div>'+ friend.name/*JSON.stringify(friend)* /+'</div>');
         });
       });
-      
+*/
+      var noeud_add = document.createElement('noeudnoeud');
       FB.api(
           {
             method: 'fql.query',
-            query: 'SELECT id FROM profile WHERE id IN (SELECT uid2 FROM friend WHERE uid1=me())'
+            query: 'SELECT uid1, uid2 FROM friend WHERE uid1 IN (SELECT uid2 FROM friend WHERE uid1= me()) AND uid2 IN (SELECT uid2 FROM friend WHERE uid1= me())'
           },
 	  function(liste){
-	      liste.data.forEach(function(elem){
-
+	      liste.forEach(function(bob){
+		      noeud_add.append('<div>'+ bob.uid1.name+' '+bob.uid2.name/*JSON.stringify(friend)*/+'</div>');
 		  });
+	      document.getElementById('fb-root').appendChild(noeud_add);
 	  });
+	  };
 	  
 
 
