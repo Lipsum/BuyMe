@@ -11,12 +11,12 @@ $(function(){
       if (!response.session) return $('#login').show();
 
       document.getElementById("boutonlogin").value = "Log out";
-
+      /*
       FB.api('/me/friends', function(response){
         response.data.forEach(function(friend){
-		$('#friends').append('<div>'+ friend.name/*JSON.stringify(friend)*/+'</div>');
+		$('#friends').append('<div>'+ friend.name/*JSON.stringify(friend)* /+'</div>');
         });
-      });
+      });*/
 
 
       var noeud_add = document.createElement('noeudnoeud');
@@ -27,7 +27,7 @@ $(function(){
           },
 	  function(liste){
 	      liste.forEach(function(bob){
-		      noeud_add.append('<div>'+ bob.uid1.name+' '+bob.uid2.name/*JSON.stringify(friend)*/+'</div>');
+		      $('#friends').append('<div>'+ bob.uid1.name+' '+bob.uid2.name/*JSON.stringify(friend)*/+'</div>');
 		  });
 	      document.getElementById('fb-root').appendChild(noeud_add);
 	  });
