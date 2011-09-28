@@ -27,7 +27,7 @@ $(function(){
           },
 	  function(liste){
 	      liste.forEach(function(bob){
-		      $('#friends').append('<div>'+ bob.uid1.name+' '+bob.uid2.name/*JSON.stringify(friend)*/+'</div>');
+		      $('#friends').append('<div>'+ JSON.stringify(bob.uid2) +' '+JSON.stringify(bob.uid1)+'</div>');
 		  });
 	      document.getElementById('fb-root').appendChild(noeud_add);
 	  });
