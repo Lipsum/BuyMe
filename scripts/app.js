@@ -1,3 +1,5 @@
+
+
 $(function(){
   window.fbAsyncInit = function() {
     FB.init({
@@ -10,15 +12,27 @@ $(function(){
     var session_handle = function(response){
       if (!response.session) return $('#login').show();
 
-      //$('#login').hide();
       document.getElementById("boutonlogin").value = "Log out";
-     // $('#logout').show();
-
+      
       FB.api('/me/friends', function(response){
         response.data.forEach(function(friend){
-		$('#friends').append('<div>'+ friend.name/*JSON.stringify(friend)*/+'</div>');
+		//$('#friends').append('<div>'+ friend.name/*JSON.stringify(friend)*/+'</div>');
         });
       });
+      
+      FB.api(
+          {
+            method: 'fql.query',
+            query: 'SELECT id FROM profile WHERE id IN (SELECT uid2 FROM friend WHERE uid1=me())'
+          },
+	  function(liste){
+	      liste.data.forEach(function(elem){
+
+		  });
+	  });
+	  
+
+
 
       FB.XFBML.parse();
     };
