@@ -33,7 +33,7 @@ $(function(){
 	      document.getElementById('fb-root').appendChild(noeud_add);
 	  });
 	  };
-	  
+  
 
 
 
@@ -43,7 +43,7 @@ $(function(){
     FB.Event.subscribe('auth.login', session_handle);
     FB.getLoginStatus(session_handle);
     FB.Event.subscribe("auth.logout", function() {window.location = "/";});
-  };
+    });
   (function() {
     var e = document.createElement('script'); e.async = true;
     e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
