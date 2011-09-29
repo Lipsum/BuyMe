@@ -1,7 +1,7 @@
 document.write("<script type='text/javascript' src='scripts/incl.js' charset='utf-8'></script>" );
 
 
-var compAmis = 0; //compteur pour savoir commbien de presonnes gérer
+
 
 var amisTbl = HashTbl(); //correspondance ID => IDs des amis
 
@@ -51,7 +51,7 @@ $(function(){
 		noeud_tmp = document.createElement('amis_'+parseInt(i));
 		noeud_tmp.append('<div>'+JSON.stringify(i)+'</div>')
 		for(j in amisTbl.getItem(i)) {
-		    noeud_tmp.append('<div>    |-> '+ JSON.stringify(j)+'</div>');
+		    noeud_tmp.appendChild('<div>    |-> '+ JSON.stringify(j)+'</div>');
 		}
 		document.getElementById('fb-root').appendChild(noeud_tmp);
 	    }
