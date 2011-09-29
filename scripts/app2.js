@@ -44,12 +44,14 @@ $(function(){
 	    
 	    var noeud_tmp;
 	    for(var i in amisTbl.items) {
-		noeud_tmp = document.createElement('amis_'+parseInt(i));
-		noeud_tmp.append('<div>'+JSON.stringify(i)+'</div>')
+//		noeud_tmp = document.createElement('amis_'+parseInt(i));
+//		noeud_tmp.append('<div>'+JSON.stringify(i)+'</div>')
+		$('#friends').append('<div>'+JSON.stringify(i)+'</div>');
 		for(j in amisTbl.getItem(i)) {
-		    noeud_tmp.appendChild('<div>    |-> '+ JSON.stringify(j)+'</div>');
+		    $('#friends').append('<div>    |-> '+ JSON.stringify(j)+'</div>');
+//		    noeud_tmp.appendChild(createTextNode('    |-> '+ JSON.stringify(j)+' )'));
 		}
-		document.getElementById('fb-root').appendChild(noeud_tmp);
+//		document.getElementById('fb-root').appendChild(noeud_tmp);
 	    }
 
 	    FB.XFBML.parse();
