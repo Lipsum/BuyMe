@@ -1,10 +1,11 @@
 
-var nAmis = 500;
-var amis = Array() // matrice d'adjacence
+var compAmis = 0; //compteur pour savoir commbien de presonnes gérer
 
-function estAmis(id1,id2) {
+var amisTbl = HashTbl(); //correspondance ID => ID des amis
 
-
+function nouvelAmis(id1,id2) {
+    amisTbl.setItem(id1,amisTbl.getItem(id1).push(id2)); // ajoute id2 à id1
+    amisTbl.setItem(id2,amisTbl.getItem(id2).push(id1)); // ajoute id1 à id2
 }
 
 /*

@@ -1,5 +1,7 @@
-function HachTbl()
-{
+function HashTbl() {
+// classe pour utiliser les tableaux comme des fonctions de hachage avec
+// toutes les méthodes habituelles
+
     this.length = 0;
     this.items = new Array();
     for (var i = 0; i < arguments.length; i += 2) {
@@ -9,8 +11,7 @@ function HachTbl()
 	}
     }
    
-    this.removeItem = function(clef)
-    {
+    this.removeItem = function(clef) {
 	var tmp='undefined';
 	if (typeof(this.items[clef]) != 'undefined') {
 	    this.length--;
@@ -24,8 +25,7 @@ function HachTbl()
 	return this.items[clef];
     }
 
-    this.setItem = function(clef, valeur)
-    {
+    this.setItem = function(clef, valeur) {
 	var tmp;
 	if (typeof(valeur) != 'undefined') {
 	    if (typeof(this.items[clef]) == 'undefined') {
@@ -41,13 +41,11 @@ function HachTbl()
 	return tmp;
     }
 
-    this.hasItem = function(in_key)
-    {
-	return typeof(this.items[in_key]) != 'undefined';
+    this.hasItem = function(clef) {
+	return typeof(this.items[clef]) != 'undefined';
     }
 
-    this.clear = function()
-    {
+    this.clear = function() {
 	for (var i in this.items) {
 	    delete this.items[i];
 	}
