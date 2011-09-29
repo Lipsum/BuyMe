@@ -33,9 +33,7 @@ $(function(){
 	    FB.api(
 		{
 		    method: 'fql.query',
-		    query: 'SELECT uid1, uid2 FROM friend WHERE uid1 IN
-                                (SELECT uid2 FROM friend WHERE uid1= me())
-                                AND uid2 IN (SELECT uid2 FROM friend WHERE uid1= me())'
+		    query: 'SELECT uid1, uid2 FROM friend WHERE uid1 IN (SELECT uid2 FROM friend WHERE uid1= me()) AND uid2 IN (SELECT uid2 FROM friend WHERE uid1= me())'
 		},
 		function(liste){
 		    liste.forEach(function(rep){
