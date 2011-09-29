@@ -4,7 +4,7 @@
   <title>BuyMe!</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="scripts/raphael-min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="scripts/app.js" type="text/javascript" charset="utf-8"></script>
+  <script src="scripts/app2.js" type="text/javascript" charset="utf-8"></script>
   <link rel="stylesheet" href="/stylesheets/style.css" type="text/css" media="screen" title="no title" charset="utf-8" />
 </head>
 <body>
