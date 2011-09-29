@@ -5,7 +5,7 @@ document.write("<script type='text/javascript' src='scripts/incl.js' charset='ut
 
 var amisTbl = HashTbl(); //correspondance ID => IDs des amis
 
-function nouvelAmis(id1,id2) {
+var nouvelAmis = function(id1,id2) {
     if(typeof(amisTbl.getItem(id1)) != 'undefinied') { // si id1 n'a pas d'amis...
 	amisTbl.setItem(id1) = HashTbl();
     }
