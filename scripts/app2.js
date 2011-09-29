@@ -1,3 +1,16 @@
+	function nouvelAmis(tbl,id1,id2) {
+	    if(typeof(tbl.getItem(id1)) == 'undefined') { // si id1 n'a pas d'amis...
+		tbl.setItem(id1,new HashTbl());
+	    }
+	    if(typeof(tbl.getItem(id2)) == 'undefined') { // si id2 n'a pas d'amis...
+		tbl.setItem(id2, new HashTbl());
+	    }
+	    
+	    tbl.getItem(id1).setItem(id2,true)
+	    tbl.getItem(id2).setItem(id1,true)
+	    //amisTbl.setItem(id1,amisTbl.getItem(id1).push(id2)); // ajoute id2 à id1
+	    //amisTbl.setItem(id2,amisTbl.getItem(id2).push(id1)); // ajoute id1 à id2
+	}
 
 
 
@@ -10,27 +23,13 @@ $(function(){
 	    xfbml : true
 	});
 
-	var amisTbl = HashTbl(); //correspondance ID => IDs des amis
+
 	
-	var nouvelAmis = function(id1,id2) {
-	    if(typeof(amisTbl.getItem(id1)) != 'undefinied') { // si id1 n'a pas d'amis...
-		amisTbl.setItem(id1) = HashTbl();
-	    }
-	    if(typeof(amisTbl.getItem(id2)) != 'undefinied') { // si id2 n'a pas d'amis...
-		amisTbl.setItem(id2) = HashTbl();
-	    }
-	    
-	    amisTbl.getItem(id1).setItem(id2,true)
-	    amisTbl.getItem(id2).setItem(id1,true)
-	    //amisTbl.setItem(id1,amisTbl.getItem(id1).push(id2)); // ajoute id2 à id1
-	    //amisTbl.setItem(id2,amisTbl.getItem(id2).push(id1)); // ajoute id1 à id2
-	}
-
-
 	var session_handle = function(response){
 	    if (!response.session) return $('#login').show();
 
 	    document.getElementById("boutonlogin").value = "Log out";
+	    var amisTbl = new HashTbl(); //correspondance ID => IDs des amis
 
 	    FB.api(
 		{
@@ -39,7 +38,7 @@ $(function(){
 		},
 		function(liste){
 		    liste.forEach(function(rep){
-			nouvelAmis(rep.uid1,rep.uid2);
+			nouvelAmis(amisTbl,rep.uid1,rep.uid2);
 		    });
 		});
 	    
