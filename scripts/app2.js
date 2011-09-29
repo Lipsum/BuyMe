@@ -1,23 +1,3 @@
-document.write("<script type='text/javascript' src='scripts/incl.js' charset='utf-8'></script>" );
-
-
-
-
-var amisTbl = HashTbl(); //correspondance ID => IDs des amis
-
-var nouvelAmis = function(id1,id2) {
-    if(typeof(amisTbl.getItem(id1)) != 'undefinied') { // si id1 n'a pas d'amis...
-	amisTbl.setItem(id1) = HashTbl();
-    }
-    if(typeof(amisTbl.getItem(id2)) != 'undefinied') { // si id2 n'a pas d'amis...
-	amisTbl.setItem(id2) = HashTbl();
-    }
-    
-    amisTbl.getItem(id1).setItem(id2,true)
-    amisTbl.getItem(id2).setItem(id1,true)
-    //amisTbl.setItem(id1,amisTbl.getItem(id1).push(id2)); // ajoute id2 à id1
-    //amisTbl.setItem(id2,amisTbl.getItem(id2).push(id1)); // ajoute id1 à id2
-}
 
 $(function(){
     window.fbAsyncInit = function() {
@@ -27,6 +7,23 @@ $(function(){
 	    cookie : true,
 	    xfbml : true
 	});
+
+	var amisTbl = HashTbl(); //correspondance ID => IDs des amis
+	
+	var nouvelAmis = function(id1,id2) {
+	    if(typeof(amisTbl.getItem(id1)) != 'undefinied') { // si id1 n'a pas d'amis...
+		amisTbl.setItem(id1) = HashTbl();
+	    }
+	    if(typeof(amisTbl.getItem(id2)) != 'undefinied') { // si id2 n'a pas d'amis...
+		amisTbl.setItem(id2) = HashTbl();
+	    }
+	    
+	    amisTbl.getItem(id1).setItem(id2,true)
+	    amisTbl.getItem(id2).setItem(id1,true)
+	    //amisTbl.setItem(id1,amisTbl.getItem(id1).push(id2)); // ajoute id2 à id1
+	    //amisTbl.setItem(id2,amisTbl.getItem(id2).push(id1)); // ajoute id1 à id2
+	}
+
 
 	var session_handle = function(response){
 	    if (!response.session) return $('#login').show();
