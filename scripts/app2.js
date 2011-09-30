@@ -1,19 +1,3 @@
-	function nouvelAmis(tbl,id1,id2) {
-	    if(typeof(tbl.getItem(id1)) == 'undefined') { // si id1 n'a pas d'amis...
-		tbl.setItem(id1,new HashTbl());
-	    }
-	    if(typeof(tbl.getItem(id2)) == 'undefined') { // si id2 n'a pas d'amis...
-		tbl.setItem(id2, new HashTbl());
-	    }
-	    
-	    tbl.getItem(id1).setItem(id2,true)
-	    tbl.getItem(id2).setItem(id1,true)
-	    //amisTbl.setItem(id1,amisTbl.getItem(id1).push(id2)); // ajoute id2 à id1
-	    //amisTbl.setItem(id2,amisTbl.getItem(id2).push(id1)); // ajoute id1 à id2
-	}
-
-
-
 $(function(){
     window.fbAsyncInit = function() {
 	FB.init({
@@ -29,7 +13,35 @@ $(function(){
 	    if (!response.session) return $('#login').show();
 
 	    document.getElementById("boutonlogin").value = "Log out";
-	    var amisTbl = new HashTbl(); //correspondance ID => IDs des amis
+
+	    var amisTbl = new Hash(); //Tbl(); //correspondance ID => IDs des amis
+	    alert("cqds");
+
+	    
+	    amisTbl.set(me(),new Hash());
+
+	    var nouvelAmi = function(tbl,id1,id2) {
+		/*    
+		      if(typeof(tbl.get(id1)) == 'undefined') { // si id1 n'a pas d'amis...
+		      tbl.set(id1,new Hash()); //HashTbl()); // on lui crée une liste d'amis (vide)
+		      }
+		      if(typeof(tbl.get(id2)) == 'undefined') { // si id2 n'a pas d'amis...
+		      tbl.set(id2, new Hash()); //HashTbl()); // on lui crée une liste d'amis (vide)
+		      }
+		*/	    
+		tbl.get(id1).set(id2,true) // id2 est l'ami de id1
+		tbl.get(id2).set(id1,true) // id1 est l'ami de id2
+	    }
+
+
+	    FB.api( // crée les listes d'amis de mes amis
+		{
+		    method: 'fql.query',
+		    query: 'SELECT uid1 FROM friend'
+		},
+		function(ami){
+		    amisTbl.set(ami, new Hash());
+		});
 
 	    FB.api(
 		{
@@ -38,21 +50,24 @@ $(function(){
 		},
 		function(liste){
 		    liste.forEach(function(rep){
-			nouvelAmis(amisTbl,rep.uid1,rep.uid2);
+			nouvelAmi(amisTbl,rep.uid1,rep.uid2);
 		    });
 		});
 	    
 	    var noeud_tmp;
-	    for(var i in amisTbl.items) {
-//		noeud_tmp = document.createElement('amis_'+parseInt(i));
-//		noeud_tmp.append('<div>'+JSON.stringify(i)+'</div>')
-		$('#friends').append('<div>'+JSON.stringify(i)+'</div>');
-		for(j in amisTbl.getItem(i)) {
-		    $('#friends').append('<div>    |-> '+ JSON.stringify(j)+'</div>');
-//		    noeud_tmp.appendChild(createTextNode('    |-> '+ JSON.stringify(j)+' )'));
-		}
-//		document.getElementById('fb-root').appendChild(noeud_tmp);
-	    }
+	    
+	    amisTbl.each(function(i)
+			 {
+			     //		noeud_tmp = document.createElement('amis_'+parseInt(i));
+			     //		noeud_tmp.append('<div>'+JSON.stringify(i)+'</div>')
+			     $('#friends').append('<div>'+JSON.stringify(i)+'</div>');
+			     alert("coucou"+JSON.stringify(i));
+			     amisTbl.get(i).each(function(j) {
+				 $('#friends').append('<div>    |-> '+ JSON.stringify(j)+'</div>');
+				 //		    noeud_tmp.appendChild(createTextNode('    |-> '+ JSON.stringify(j)+' )'));
+			     });
+			     //		document.getElementById('fb-root').appendChild(noeud_tmp);
+			 });
 
 	    FB.XFBML.parse();
 	};
