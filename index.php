@@ -7,11 +7,11 @@
    <script src="scripts/app0.js" type="text/javascript" charset="utf-8"></script>
    <script type="text/javascript" src="scripts/prototype.js" charset="utf-8"></script>
    <link rel="stylesheet" href="stylesheets/style.css" type="text/css" media="screen" title="no title" charset="utf-8" />
-   <style type="text/css">  
+
 
 <!--    #canvas_container {  width: 500px;  border: 1px solid #aaa;  }  -->
 
-</style>  
+
 </head>
 <body>
 <p id="userName"></p>
