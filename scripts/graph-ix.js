@@ -4,7 +4,7 @@
 
 window.onload = function() {  
     var rayon = 5;
-    var decal = Math.sqrt(2*rayon*rayon);
+    var decal = rayon; //Math.sqrt(2*rayon*rayon);
     var paper = new Raphael(document.getElementById('canvas_container'), 700, 700);   
     var circle = paper.circle(100, 500, rayon);
     var circle2 = paper.circle(200, 200, rayon);

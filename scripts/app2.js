@@ -11,11 +11,16 @@ $(function(){
 	alert("cqds");
 	
 	var session_handle = function(response) {
-	    if (!response.session) return $('#login').show();
+	
+	    if (!response.session) {
+		alert('iffff'+document.getElementById('login').innerHTML);
+		return document.getElementById('login').show();
+	    }
 
-	    document.getElementById("boutonlogin").value = "Log out";
+	    alert('tralala');
+	    document.getElementById("login").value = "Log out";
 
-
+	    alert('coucou');
 	    var amisTbl = new Hash(); //Tbl(); //correspondance ID => IDs des amis
 
 
@@ -23,14 +28,6 @@ $(function(){
 	    amisTbl.set(me(),new Hash());
 
 	    var nouvelAmi = function(tbl,id1,id2) {
-		/*    
-		      if(typeof(tbl.get(id1)) == 'undefined') { // si id1 n'a pas d'amis...
-		      tbl.set(id1,new Hash()); //HashTbl()); // on lui crée une liste d'amis (vide)
-		      }
-		      if(typeof(tbl.get(id2)) == 'undefined') { // si id2 n'a pas d'amis...
-		      tbl.set(id2, new Hash()); //HashTbl()); // on lui crée une liste d'amis (vide)
-		      }
-		*/	    
 		tbl.get(id1).set(id2,true) // id2 est l'ami de id1
 		tbl.get(id2).set(id1,true) // id1 est l'ami de id2
 	    }
@@ -69,28 +66,16 @@ $(function(){
 
 
 			     amisTbl.get(i).each(function(j) {
-				 new_node.innerHTML = '    |-> '+ JSON.stringify(j);
-				 friend.appendChild(new_node);
+				 var new_node2 = document.createElement("div");
+				 new_node2.innerHTML = '    |-> '+ JSON.stringify(j);
+				 new_node.appendChild(new_node2);
 
-
-
-
-/*
-
-			     //		noeud_tmp = document.createElement('amis_'+parseInt(i));
-			     //		noeud_tmp.append('<div>'+JSON.stringify(i)+'</div>')
-			     $('#friends').append('<div>'+JSON.stringify(i)+'</div>');
-			     alert("coucou"+JSON.stringify(i));
-			     amisTbl.get(i).each(function(j) {
-				 $('#friends').append('<div>    |-> '+ JSON.stringify(j)+'</div>');
-				 //		    noeud_tmp.appendChild(createTextNode('    |-> '+ JSON.stringify(j)+' )'));
-			     });
-			     //		document.getElementById('fb-root').appendChild(noeud_tmp);
-*/
 			     });
 			 });
 	    FB.XFBML.parse();
 	};
+
+    
 	FB.Event.subscribe('auth.sessionChange', session_handle);
 	FB.Event.subscribe('auth.login', session_handle);
 	FB.getLoginStatus(session_handle);
