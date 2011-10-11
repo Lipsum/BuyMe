@@ -8,7 +8,7 @@ $(function(){
     });
 
     var session_handle = function(response){
-      if (!response.session) return $('#login').show();
+	if (!response.session) return document.getElementById('login').show();
 
       document.getElementById("boutonlogin").value = "Log out";
       /*
@@ -20,6 +20,7 @@ $(function(){
 
 
       var noeud_add = document.createElement('noeudnoeud');
+	var friend = document.getElementById("friends");
       FB.api(
           {
             method: 'fql.query',
@@ -27,7 +28,9 @@ $(function(){
           },
 	  function(liste){
 	      liste.forEach(function(bob){
-		      $('#friends').append('<div>'+ JSON.stringify(bob.uid2) +' '+JSON.stringify(bob.uid1)+'</div>');
+		  var new_node = document.createElement("div");
+		  new_node.innerHTML = JSON.stringify(bob.uid2) +' '+JSON.stringify(bob.uid1);
+		  friend.appendChild(new_node);
 		  });
 	      document.getElementById('fb-root').appendChild(noeud_add);
 	  });

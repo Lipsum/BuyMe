@@ -8,14 +8,16 @@ $(function(){
 	});
 
 
+	alert("cqds");
 	
-	var session_handle = function(response){
+	var session_handle = function(response) {
 	    if (!response.session) return $('#login').show();
 
 	    document.getElementById("boutonlogin").value = "Log out";
 
+
 	    var amisTbl = new Hash(); //Tbl(); //correspondance ID => IDs des amis
-	    alert("cqds");
+
 
 	    
 	    amisTbl.set(me(),new Hash());
@@ -55,9 +57,26 @@ $(function(){
 		});
 	    
 	    var noeud_tmp;
+
+	    var friend = document.getElementById("friends"); //endroit ou mettre le texte
 	    
 	    amisTbl.each(function(i)
 			 {
+
+			     var new_node = document.createElement("div");
+			     new_node.innerHTML = JSON.stringify(i);
+			     friend.appendChild(new_node);
+
+
+			     amisTbl.get(i).each(function(j) {
+				 new_node.innerHTML = '    |-> '+ JSON.stringify(j);
+				 friend.appendChild(new_node);
+
+
+
+
+/*
+
 			     //		noeud_tmp = document.createElement('amis_'+parseInt(i));
 			     //		noeud_tmp.append('<div>'+JSON.stringify(i)+'</div>')
 			     $('#friends').append('<div>'+JSON.stringify(i)+'</div>');
@@ -67,8 +86,9 @@ $(function(){
 				 //		    noeud_tmp.appendChild(createTextNode('    |-> '+ JSON.stringify(j)+' )'));
 			     });
 			     //		document.getElementById('fb-root').appendChild(noeud_tmp);
+*/
+			     });
 			 });
-
 	    FB.XFBML.parse();
 	};
 	FB.Event.subscribe('auth.sessionChange', session_handle);
