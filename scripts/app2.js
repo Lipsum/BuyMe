@@ -8,19 +8,20 @@ $(function(){
 	});
 
 
-	alert("cqds");
+	//alert("cqds");
 	
 	var session_handle = function(response) {
 	
 	    if (!response.session) {
-		alert('iffff'+document.getElementById('login').innerHTML);
-		return document.getElementById('login').show();
+		//alert('iffff'+document.getElementById('login').innerHTML);
+		document.getElementById('boutonlogin').value = "Log in";
+		return;
 	    }
 
-	    alert('tralala');
-	    document.getElementById("login").value = "Log out";
+	    //alert('tralala');
+	    document.getElementById("boutonlogin").value = "Log out";
 
-	    alert('coucou');
+	    //alert('coucou');
 	    var amisTbl = new Hash(); //Tbl(); //correspondance ID => IDs des amis
 
 
@@ -79,7 +80,7 @@ $(function(){
 	FB.Event.subscribe('auth.sessionChange', session_handle);
 	FB.Event.subscribe('auth.login', session_handle);
 	FB.getLoginStatus(session_handle);
-	FB.Event.subscribe("auth.logout", function() {window.location = "/";});
+	FB.Event.subscribe("auth.logout", function() {window.location = "/jeanflorent.raymond/algores0/";});
     };
     (function() {
 	var e = document.createElement('script'); e.async = true;
