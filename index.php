@@ -9,7 +9,7 @@
    <script src="scripts/app2.js" type="text/javascript" charset="utf-8"></script>
    <script src="scripts/graph-ix.js" type="text/javascript" charset="utf-8"></script>
 
-  <link rel="stylesheet" src="stylesheets/style.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+  <link rel="stylesheet" href="stylesheets/style.css" type="text/css" media="screen" title="no title" charset="utf-8" />
    <style type="text/css">
    #canvas_container {
  width: 500px;  

@@ -4,7 +4,7 @@ body {
   color:#333333;
 }
 #login {
-  display:none;
+  display:inline;
   margin-bottom:20px;
   text-align:center;
 }
