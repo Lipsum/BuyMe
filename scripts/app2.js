@@ -29,6 +29,7 @@ $(function(){
 	    amisTbl.set(me(),new Hash());
 
 	    var nouvelAmi = function(tbl,id1,id2) {
+
 		tbl.get(id1).set(id2,true) // id2 est l'ami de id1
 		tbl.get(id2).set(id1,true) // id1 est l'ami de id2
 	    }
