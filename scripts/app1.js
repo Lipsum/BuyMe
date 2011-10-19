@@ -2,6 +2,9 @@
 app1.js
 */
 
+var amisTbl = new Array(); // matrice d'adjacence (les liens inexistants ne sont pas stockés : cool!)
+var temp;
+
 var nouvelAmi = function(tbl,id1,id2) {
     // relie id1 et id2 par un lien d'amitié (que c'est poétique!)
 
@@ -35,29 +38,29 @@ $(function(){
 
 	    document.getElementById("boutonlogin").value = "Log out";
 
-	    var amisTbl = new Array(); // matrice d'adjacence (les liens inexistants ne sont pas stockés : cool!)
-
 	    // requête FQL pour connaitre les liens d'amitié : 
 	    FB.api(
 		{
 		    method: 'fql.query',
 		    query: 'SELECT uid1, uid2 FROM friend WHERE uid1 IN (SELECT uid2 FROM friend WHERE uid1= me()) AND uid2 IN (SELECT uid2 FROM friend WHERE uid1= me())'
 		},
-		function(liste){
-		    liste.forEach(function(rep){
+		function(liste) {
+		    liste.forEach(function(rep) {
 			nouvelAmi(amisTbl,rep.uid1,rep.uid2); // on mémorise chaque couple d'amis
-//			$('#friends').append("héhé:"+ amisTbl[rep.uid1][rep.uid2]);
+		//	$('#friends').append("héhé:"+ amisTbl[rep.uid1][rep.uid2]);
 		    });
+//		    console.log("jeffoulefifou");
+		    temp = amisTbl;
+		    console.log(temp["501543318"]["1295908866"]);
 		});
-	    
-	    var noeud_tmp;
-
+	    console.log(temp["501543318"]["1295908866"]);	    
+//	    console.log(typeof(amisTbl["100002442377316"]))
 //	    var friend = document.getElementById("friends"); //endroit ou mettre le texte
 	    
-	    $('#friends').append("<h1>Liste des amis :</h1>");
+//	    $('#friends').append("<h1>Liste des amis :</h1>");
 	    for (var i in amisTbl) {
 		alert('oulala');
-		$('#friends').append("<div>JSON.stringify(i)</div>");
+		$('#friends').append("<div>"+JSON.stringify(i)+"</div>");
 //		$("<div>JSON.stringify(i)</div>").appendTo("friends");
 //		var new_node = document.createElement("div");
 //		new_node.innerHTML = JSON.stringify(i);
