@@ -2,21 +2,26 @@
 app1.js
 */
 
-var amisTbl = new Array(); // matrice d'adjacence (les liens inexistants ne sont pas stockés : cool!)
-var temp;
+var amisTbl = new Object(); // matrice d'adjacence (les liens inexistants ne sont pas stockés : cool!)
+var nPers = 0;
+var nLiens = 0;
 
 var nouvelAmi = function(tbl,id1,id2) {
     // relie id1 et id2 par un lien d'amitié (que c'est poétique!)
 
     if(typeof(tbl[id1]) == 'undefined') {
-	tbl[id1] = new Array()
+	tbl[id1] = new Object();
+	nPers = nPers + 1;
     }
     if(typeof(tbl[id2]) == 'undefined') {
-	tbl[id2] = new Array()
+	tbl[id2] = new Object();
+	nPers = nPers + 1;
     }
     
     tbl[id1][id2] = true // id2 est l'ami de id1
     tbl[id2][id1] = true // id1 est l'ami de id2
+    
+    nLiens = nLiens+1;
 }
 
 
@@ -47,34 +52,14 @@ $(function(){
 		function(liste) {
 		    liste.forEach(function(rep) {
 			nouvelAmi(amisTbl,rep.uid1,rep.uid2); // on mémorise chaque couple d'amis
-		//	$('#friends').append("héhé:"+ amisTbl[rep.uid1][rep.uid2]);
 		    });
-
-		    var friend = document.getElementById("friends"); //endroit ou mettre le texte
+		    nLiens = nLiens/2; //on a compté les liens dans les deux sens donc deux fois trop
+		    graphe(amisTbl,nPers,nLiens);
+		    normalise(position_x,position_y)
+		    dessine(amisTbl, position_x,position_y);
 		    
-		    //	    $('#friends').append("<h1>Liste des amis :</h1>");
-		    for (var i in amisTbl) {
-			alert('oulala');
-			$('#friends').append("<div>"+JSON.stringify(i)+"</div>");
-			//		$("<div>JSON.stringify(i)</div>").appendTo("friends");
-			//		var new_node = document.createElement("div");
-			//		new_node.innerHTML = JSON.stringify(i);
-			//		friend.appendChild(new_node);
-
-
-			for(var j in  amisTbl[i]) {
-			    $('#friends').append("<div>    |-> "+ JSON.stringify(j)+"</div>");
-			    //		    $("<div>    |-> "+ JSON.stringify(j)+"</div>").appendTo("friends");
-			    //		    var new_node2 = document.createElement("div");
-			    //		    new_node2.innerHTML = '    |-> '+ JSON.stringify(j);
-			    //		    new_node.appendChild(new_node2);   
-			}
-		    }
-		    $('#friends').append("<h1>----</h1>");
-		    
-
 		});
-//	    
+
 	    FB.XFBML.parse();
 	};
 

@@ -1,7 +1,7 @@
-position_x = new Array();
-position_y = new Array();
-velocity_x = new Array();
-velocity_y = new Array();
+position_x = new Object();
+position_y = new Object();
+velocity_x = new Object();
+velocity_y = new Object();
 var forceConstant;
 var damp = Largeur / 10;
 

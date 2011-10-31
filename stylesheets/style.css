@@ -9,8 +9,8 @@ body {
   text-align:center;
 }
 
-#canvas_container {
-    width: 500px;  
+#can {
+    width: 700px;  
     border: 1px;
     solid #aaa; 
 }

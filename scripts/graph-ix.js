@@ -1,20 +1,46 @@
+var sommets = Object();
+var SOM_COUL = "#f00";
+var CAN_X = 700
+var CAN_Y = 700
 
+var normalise = function(pos_x,pos_y) {
+// met le dessin à l'échelle du canvas
+    var max_x = 0;
+    var max_y = 0;
+    var min_x = 1000;
+    var min_y = 1000;
 
+    // recherche des min et max
+    for(i in pos_x) {
+	max_x = max(max_x,pos_x[i]);
+	max_y = max(max_y,pos_y[i]);
 
+	min_x = min(min_x,pos_x[i]);
+	min_y = min(min_y,pos_y[i]);
+    }
 
-window.onload = function() {  
-    var rayon = 5;
-    var decal = rayon; //Math.sqrt(2*rayon*rayon);
-    var paper = new Raphael(document.getElementById('canvas_container'), 700, 700);   
-    var circle = paper.circle(100, 500, rayon);
-    var circle2 = paper.circle(200, 200, rayon);
-    var test = circle.getBBox();
-    var test2 = circle2.getBBox();
-    circle.attr("fill", "#f00");
-    circle2.attr("fill", "#f00");
-    var circle3 = paper.circle(test.x+decal, test.y+decal, 50);
-    diff_x = test2.x -test.x;
-    diff_y = test2.y -test.y;
-    var chemin = paper.path("M "+(test.x+decal)+" "+(test.y+decal)+" l "+(diff_x)+" "+(diff_y));
-//    chemin.attr("fill", "#f00");
+    // mise à l'échelle :
+    for(i in pos_x) {
+	pos_x[i] = (pos_x[i]-min_x)/(max_x-min_x)*CAN_X;
+	pos_y[i] = (pos_y[i]-min_y)/(max_y-min_y)*CAN_Y;
+    }
 }
+
+var dessine = function(matAdj, pos_x, pos_y) {
+
+    var can = new Raphael(document.getElementById('can'), CAN_X, CAN_Y);   
+    var rayon = 2;
+
+    for(i in pos_x) {
+	sommets[i] = can.circle(pos_x,pos_y,rayon);
+	sommets[i].attr("fill", SOM_COUL);
+    }
+    for(i in pos_x) {
+	for(j in pos_x) {
+	    if(i!=j && matAdj[i][j]=true) {
+		can.path("M "+pos_x[i]" "+pos_y[i]+" L "+pos_x[j]+" "+pos_y[j]);
+	    }
+	}
+    }
+}
+

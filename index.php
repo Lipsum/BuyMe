@@ -5,11 +5,11 @@
    <title>BuyMe!</title>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
    <script src="scripts/raphael-min.js" type="text/javascript" charset="utf-8"></script>
-<!--   <script src="scripts/prototype.js" type="text/javascript" charset="utf-8"></script>-->
-<!--   <script src="scripts/hashtbl.js" type="text/javascript" charset="utf-8"></script>-->
-   <script src="scripts/app1.js" type="text/javascript" charset="utf-8"></script>
+   <script src="scripts/repulsion_fun.js" type="text/javascript" charset="utf-8"></script>
    <script src="scripts/graph-ix.js" type="text/javascript" charset="utf-8"></script>
+   <script src="scripts/app1.js" type="text/javascript" charset="utf-8"></script>
    <link rel="stylesheet" href="stylesheets/style.css" type="text/css" media="screen" title="no title" charset="utf-8" />
+   <link rel="icon" type="image/png" href="favicon.png" />
    </head>
    <body>
 
@@ -18,7 +18,7 @@
    <div id="login"><fb:login-button id="boutonlogin" value = "Connect with Facebook" autologoutlink="true" size="medium" background="white" length="short"></fb:login-button></div>
 
    <div id="friends"></div>
-   <div id="canvas_container"></div>
+   <div id="can"></div>
    </body>
    </html>
 
