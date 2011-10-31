@@ -2,16 +2,24 @@ position_x = new Object();
 position_y = new Object();
 velocity_x = new Object();
 velocity_y = new Object();
-var forceConstant;
+var Largeur = 1000;
+var Longueur = 1000;
+var forceConstant = 50;
 var damp = Largeur / 10;
 
 function repulsion(delt, deltalenght){
+    console.log("> repulsion");
+
     var result = 0;
     var force = (forceConstant * forceConstant)/deltalenght;
+
+    console.log("< repulsion");
     return (delt / deltalenght) * force;
 }
 
 function graphe(matrix, nb_v, nb_e){
+    console.log("> graphe");
+
     var global_energy = 0;
     forceConstant = 3*(Largeur * Longueur/matrix.lenght)/4
     for (noeud in matrix){
@@ -57,5 +65,5 @@ function graphe(matrix, nb_v, nb_e){
 
 	damp = damp * (1 - cmp / 700)
     }	
-
+    console.log("< graphe");
 }
