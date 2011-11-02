@@ -1,7 +1,8 @@
 var sommets = Object();
 var SOM_COUL = "#f00";
-var CAN_X = 700
-var CAN_Y = 700
+var CAN_X = Largeur
+var CAN_Y = Longueur
+
 
 var normalise = function(pos_x,pos_y) {
 // met le dessin à l'échelle du canvas
@@ -35,12 +36,10 @@ var dessine = function(matAdj, pos_x, pos_y) {
     console.log("> dessine");
 
     var can = new Raphael(document.getElementById('can'), CAN_X, CAN_Y);   
-    var rayon = 2;
-
-    for(i in pos_x) {
-	sommets[i] = can.circle(pos_x,pos_y,rayon);
-	sommets[i].attr("fill", SOM_COUL);
-    }
+    var rayon = 5;
+    
+    //can.circle(10,10,rayon).attr("fill", SOM_COUL);
+ 
     for(i in pos_x) {
 	for(j in pos_x) {
 	    if(i!=j && matAdj[i][j]==true) {
@@ -48,6 +47,13 @@ var dessine = function(matAdj, pos_x, pos_y) {
 	    }
 	}
     }
+    
+    for(i in pos_x) {
+	sommets[i] = can.circle(pos_x[i],pos_y[i],rayon);
+	sommets[i].attr("fill", SOM_COUL);
+//	console.log("Coord : ("+pos_x[i]+", "+pos_y[i]+")");
+    }
+
 
     console.log("< dessine");
 }

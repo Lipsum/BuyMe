@@ -2,33 +2,30 @@ position_x = new Object();
 position_y = new Object();
 velocity_x = new Object();
 velocity_y = new Object();
-var Largeur = 1000;
-var Longueur = 1000;
-var forceConstant = 50;
+var Largeur = 900;
+var Longueur = 600;
+
+var forceConstant;
 var damp = Largeur / 10;
 
-function repulsion(delt, deltalenght){
-    console.log("> repulsion");
-
-    var result = 0;
-    var force = (forceConstant * forceConstant)/deltalenght;
-
-    console.log("< repulsion");
-    return (delt / deltalenght) * force;
+function repulsion(delt, deltalength){
+    var force = (forceConstant * forceConstant)/deltalength;
+    return ((delt / deltalength) * force);
 }
 
 function graphe(matrix, nb_v, nb_e){
-    console.log("> graphe");
-
+    console.log("> graphe"+nb_v);
+    
+    var nbTours = 100;
     var global_energy = 0;
-    forceConstant = 3*(Largeur * Longueur/matrix.lenght)/4
+    forceConstant = 3*(Largeur * Longueur/nb_v)/4
     for (noeud in matrix){
-	position_x[noeud] = Math.random();
-	position_y[noeud] = Math.random();
+	position_x[noeud] = Math.random()*Largeur;
+	position_y[noeud] = Math.random()*Longueur;
 	velocity_x[noeud] = 0;
 	velocity_y[noeud] = 0;
     }
-    for(cmp = 0; cmp< 700; cmp++){
+    for(cmp = 0; cmp< nbTours; cmp++){
 	global_energy = 0;
 	for (noeud in matrix){
 	    var net_force_x = 0;
@@ -38,7 +35,7 @@ function graphe(matrix, nb_v, nb_e){
 		    if(matrix[noeud][voisin] == true){
 			var delta_x = position_x[noeud] - position_x[voisin];
 			var delta_y = position_y[noeud] - position_y[voisin];
-			var lenght = Math.max(1, Math.sqrt(delta_x * delta_x + delta_y * delta_y));
+			var length = Math.max(1, Math.sqrt(delta_x * delta_x + delta_y * delta_y));
 			net_force_x = net_force_x - repulsion(delta_x, length);
 			net_force_y = net_force_y - repulsion(delta_y, length);
 			velocity_x[voisin] = (velocity_x[voisin] - repulsion(delta_x, length));
@@ -47,9 +44,9 @@ function graphe(matrix, nb_v, nb_e){
 		    else{
 			var delta_x = position_x[noeud] - position_x[voisin];
 			var delta_y = position_y[noeud] - position_y[voisin];
-			var lenght = Math.max(1, Math.sqrt(delta_x * delta_x + delta_y * delta_y));
-			net_force_x = net_force_x + repulsion(delta_x, length);
-			net_force_y = net_force_y + repulsion(delta_y, length);
+			var length = Math.max(1, Math.sqrt(delta_x * delta_x + delta_y * delta_y));
+			net_force_x = net_force_x + 150*length;
+			net_force_y = net_force_y + 150*length;
 		    }
 		}
 	    }
@@ -57,13 +54,12 @@ function graphe(matrix, nb_v, nb_e){
 	    velocity_y[noeud] = (velocity_y[noeud] + net_force_y);
 	}
 	for (noeud in matrix){
-	    lenght = Math.max(1, Math.sqrt(velocity_x[noeud] * velocity_x[noeud] 
+	    length = Math.max(1, Math.sqrt(velocity_x[noeud] * velocity_x[noeud] 
 					   + velocity_y[noeud] * velocity_y[noeud]));
-	    position_x[noeud] = position_x[noeud] + (velocity_x[noeud] / lenght)*Math.min(damp, length)
-	    position_y[noeud] = position_y[noeud] + (velocity_y[noeud] / lenght)*Math.min(damp, length)	    
+	    position_x[noeud] = position_x[noeud] + (velocity_x[noeud] / length)*Math.min(damp, length)
+	    position_y[noeud] = position_y[noeud] + (velocity_y[noeud] / length)*Math.min(damp, length)	    
 	}
-
-	damp = damp * (1 - cmp / 700)
-    }	
+	damp = damp * (1 - cmp / nbTours)
+    }
     console.log("< graphe");
 }
