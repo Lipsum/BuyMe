@@ -29,6 +29,7 @@ var highlight_edges = function(name){
 	edges[name][i].attr("stroke-width", "4")
     }
     document.getElementById('img_ami').src = "http://graph.facebook.com/"+name+"/picture";
+    document.getElementById("infos_ami").innerHTML = i;
 }
 
 var unlight_edges = function(name){
@@ -85,11 +86,12 @@ var dessine = function(matAdj, pos_x, pos_y) {
     console.log("> dessine");
 
    // var can = new Raphael(document.getElementById('can'), CAN_X, CAN_Y);  
-
+    
+    begin();
 
     current_highlight = -1;
     loading_bar.remove();
-    current_load.remove();
+    //current_load.remove();
     
     //can.circle(10,10,rayon).attr("fill", SOM_COUL);
  
