@@ -1,7 +1,55 @@
-var sommets = Object();
+var sommets = new Object();
+var edges = new Object();
 var SOM_COUL = "#f00";
-var CAN_X = Largeur
-var CAN_Y = Longueur
+var SOM_COUL2 = "#1015DA";
+var EDG_COUL = "#000";
+var EDG_COUL2 = "#1015DA";
+var current_highlight;
+var can;
+var loading_bar;
+var current_load;
+var rayon = 7;
+var CAN_X = Largeur;
+var CAN_Y = Longueur;
+
+var loading = function(step){
+    if(typeof(current_load) != 'undefined'){
+	current_load.remove()	
+    }
+    current_load = can.rect(300, 200, 300, 200 + step*10);
+    console.log("load "+step);
+    current_load.attr("fill", "red");
+}
+
+
+
+var highlight_edges = function(name){
+    for (i in edges[name]){
+	edges[name][i].attr("stroke", EDG_COUL2)
+	edges[name][i].attr("stroke-width", "4")
+    }
+}
+
+var unlight_edges = function(name){
+    for (i in edges[name]){
+	edges[name][i].attr("stroke", EDG_COUL)
+	edges[name][i].attr("stroke-width", "1")
+    }
+}
+
+
+var add_edges = function(ami1, ami2, objet){
+    if(typeof(edges[ami1]) == 'undefined'){
+	edges[ami1] = new Object();
+    }
+    if(typeof(edges[ami2]) == 'undefined'){
+	edges[ami2] = new Object();
+    }
+    
+    edges[ami1][ami2] = objet;
+    edges[ami2][ami1] = objet;
+}
+
 
 
 var normalise = function(pos_x,pos_y) {
@@ -35,15 +83,20 @@ var dessine = function(matAdj, pos_x, pos_y) {
 
     console.log("> dessine");
 
-    var can = new Raphael(document.getElementById('can'), CAN_X, CAN_Y);   
-    var rayon = 5;
+   // var can = new Raphael(document.getElementById('can'), CAN_X, CAN_Y);  
+
+
+    current_highlight = -1;
+    loading_bar.remove();
+    current_load.remove();
     
     //can.circle(10,10,rayon).attr("fill", SOM_COUL);
  
     for(i in pos_x) {
 	for(j in pos_x) {
 	    if(i!=j && matAdj[i][j]==true) {
-		can.path("M "+pos_x[i]+" "+pos_y[i]+" L "+pos_x[j]+" "+pos_y[j]);
+		temp = can.path("M "+pos_x[i]+" "+pos_y[i]+" L "+pos_x[j]+" "+pos_y[j]);
+		add_edges(i, j, temp); 
 	    }
 	}
     }
@@ -51,6 +104,16 @@ var dessine = function(matAdj, pos_x, pos_y) {
     for(i in pos_x) {
 	sommets[i] = can.circle(pos_x[i],pos_y[i],rayon);
 	sommets[i].attr("fill", SOM_COUL);
+	sommets[i].node.id = i;
+	sommets[i].click(function(event){
+	    if(current_highlight != -1){
+		sommets[current_highlight].attr("fill", SOM_COUL)
+		unlight_edges(current_highlight)
+	    }
+	    current_highlight = event.target.id
+	    sommets[current_highlight].attr("fill", SOM_COUL2)
+	    highlight_edges(current_highlight)
+	});
 //	console.log("Coord : ("+pos_x[i]+", "+pos_y[i]+")");
     }
 
@@ -58,3 +121,9 @@ var dessine = function(matAdj, pos_x, pos_y) {
     console.log("< dessine");
 }
 
+
+
+var begin = function(){
+    can = new Raphael(document.getElementById('can'), CAN_X, CAN_Y);  
+    loading_bar = can.rect(300, 200, 300, 400);
+}
