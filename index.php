@@ -19,6 +19,11 @@
 
    <div id="friends"></div>
    <div id="can"></div>
+   <div id="infos_ami" class="floatleft">
+   <img id = "img_ami" src="../img/personne.png">
+   AMI
+   </div>
+
    </body>
    </html>
 

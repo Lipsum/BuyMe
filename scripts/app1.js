@@ -55,7 +55,7 @@ $(function(){
 		    });
 		    nLiens = nLiens/2; //on a compté les liens dans les deux sens donc deux fois trop
 		    graphe(amisTbl,nPers,nLiens);
-		    normalise(position_x,position_y)
+		    normalise(position_x,position_y);
 		    dessine(amisTbl, position_x,position_y);
 		    
 		});

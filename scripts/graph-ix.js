@@ -28,6 +28,7 @@ var highlight_edges = function(name){
 	edges[name][i].attr("stroke", EDG_COUL2)
 	edges[name][i].attr("stroke-width", "4")
     }
+    document.getElementById('img_ami').src = "http://graph.facebook.com/"+name+"/picture";
 }
 
 var unlight_edges = function(name){
@@ -105,8 +106,8 @@ var dessine = function(matAdj, pos_x, pos_y) {
 	sommets[i] = can.circle(pos_x[i],pos_y[i],rayon);
 	sommets[i].attr("fill", SOM_COUL);
 	sommets[i].node.id = i;
-	sommets[i].click(function(event){
-	    if(current_highlight != -1){
+	sommets[i].click(function(event) {
+	    if(current_highlight != -1) {
 		sommets[current_highlight].attr("fill", SOM_COUL)
 		unlight_edges(current_highlight)
 	    }
