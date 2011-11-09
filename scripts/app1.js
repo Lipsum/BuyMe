@@ -6,15 +6,18 @@ var amisTbl = new Object(); // matrice d'adjacence (les liens inexistants ne son
 var nPers = 0;
 var nLiens = 0;
 
-var nouvelAmi = function(tbl,id1,id2) {
+var nouvelAmi = function(tbl,id1,id2,nm1,nm2) {
     // relie id1 et id2 par un lien d'amitié (que c'est poétique!)
 
     if(typeof(tbl[id1]) == 'undefined') {
 	tbl[id1] = new Object();
+//	console.log("azert"+nm1);
+	tbl[id1][id1] = nm1;
 	nPers = nPers + 1;
     }
     if(typeof(tbl[id2]) == 'undefined') {
 	tbl[id2] = new Object();
+	tbl[id2][id2] = nm2;
 	nPers = nPers + 1;
     }
     
@@ -47,12 +50,20 @@ $(function(){
 	    FB.api(
 		{
 		    method: 'fql.query',
-		    query: 'SELECT uid1, uid2 FROM friend WHERE uid1 IN (SELECT uid2 FROM friend WHERE uid1= me()) AND uid2 IN (SELECT uid2 FROM friend WHERE uid1= me())'
+		    query: 'SELECT uid1, uid2, name1, name2 FROM user WHERE uid1 IN friend AND uid2 IN friend AND uid1 IN (SELECT uid2 FROM friend WHERE uid1= me()) AND uid2 IN (SELECT uid2 FROM friend WHERE uid1= me()) AND name1 IN (SELECT name FROM user WHERE uid = uid1 ) AND name2 IN (SELECT name FROM user WHERE uid = uid2 )'
+
+//friend WHERE uid1 IN (SELECT uid2 FROM friend WHERE uid1= me()) AND uid2 IN (SELECT uid2 FROM friend WHERE uid1= me()) AND name1 IN ()'
+// AND SELECT name1 IN (SELECT name FROM user WHERE uid = uid1) AND SELECT name2 IN (SELECT name FROM user WHERE uid = uid2)'
 		},
 		function(liste) {
-		    liste.forEach(function(rep) {
-			nouvelAmi(amisTbl,rep.uid1,rep.uid2); // on mémorise chaque couple d'amis
+		    console.log(liste);
+/*		    liste.forEach(function(rep) {
+//		    for(var iter in liste) {
+//			console.log(liste[iter]);
+			nouvelAmi(amisTbl,rep.uid1,rep.uid2,rep.name1,rep.name2); // on mémorise chaque couple d'amis
+//			console.log("vgvbj,=" + rep.uid1.name);
 		    });
+*/
 		    nLiens = nLiens/2; //on a compté les liens dans les deux sens donc deux fois trop
 		    graphe(amisTbl,nPers,nLiens);
 		    normalise(position_x,position_y);

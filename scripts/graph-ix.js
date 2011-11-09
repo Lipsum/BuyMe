@@ -23,13 +23,13 @@ var loading = function(step){
 
 
 
-var highlight_edges = function(name){
+var highlight_edges = function(name,matAdj){
     for (i in edges[name]){
 	edges[name][i].attr("stroke", EDG_COUL2)
 	edges[name][i].attr("stroke-width", "4")
     }
     document.getElementById('img_ami').src = "http://graph.facebook.com/"+name+"/picture";
-    document.getElementById("infos_ami").innerHTML = i;
+    document.getElementById("infos_ami").innerHTML = matAdj[name][name];
 }
 
 var unlight_edges = function(name){
@@ -115,7 +115,7 @@ var dessine = function(matAdj, pos_x, pos_y) {
 	    }
 	    current_highlight = event.target.id
 	    sommets[current_highlight].attr("fill", SOM_COUL2)
-	    highlight_edges(current_highlight)
+	    highlight_edges(current_highlight,matAdj)
 	});
 //	console.log("Coord : ("+pos_x[i]+", "+pos_y[i]+")");
     }

@@ -16,7 +16,7 @@ function repulsion(delt, deltalength){
 function graphe(matrix, nb_v, nb_e){
     console.log("> graphe"+nb_v);
     
-    var nbTours = 100;
+    var nbTours = 50;
     var global_energy = 0;
     forceConstant = 3*(Largeur * Longueur/nb_v)/4
     for (noeud in matrix){
