@@ -108,7 +108,7 @@ var dessine = function(matAdj, pos_x, pos_y) {
 	sommets[i] = can.circle(pos_x[i],pos_y[i],rayon);
 	sommets[i].attr("fill", SOM_COUL);
 	sommets[i].node.id = i;
-	sommets[i].click(function(event) {
+	sommets[i].mouseover(function(event) {
 	    if(current_highlight != -1) {
 		sommets[current_highlight].attr("fill", SOM_COUL)
 		unlight_edges(current_highlight)
@@ -117,6 +117,13 @@ var dessine = function(matAdj, pos_x, pos_y) {
 	    sommets[current_highlight].attr("fill", SOM_COUL2)
 	    highlight_edges(current_highlight,matAdj)
 	});
+
+	sommets[i].mouseout(function(event) {
+	    current_highlight = event.target.id
+	    sommets[current_highlight].attr("fill", SOM_COUL)
+	    unlight_edges(current_highlight,matAdj)
+	});
+
 //	console.log("Coord : ("+pos_x[i]+", "+pos_y[i]+")");
     }
 
