@@ -5,21 +5,11 @@ var SOM_COUL2 = "#1015DA";
 var EDG_COUL = "#000";
 var EDG_COUL2 = "#1015DA";
 var current_highlight;
-var can;
-var loading_bar;
-var current_load;
+
 var rayon = 7;
 var CAN_X = Largeur;
 var CAN_Y = Longueur;
 
-var loading = function(step){
-    if(typeof(current_load) != 'undefined'){
-	current_load.remove()	
-    }
-    current_load = can.rect(300, 200, 300, 200 + step*10);
-    console.log("load "+step);
-    current_load.attr("fill", "red");
-}
 
 
 
@@ -85,16 +75,15 @@ var dessine = function(matAdj, pos_x, pos_y) {
 
     console.log("> dessine");
 
-   // var can = new Raphael(document.getElementById('can'), CAN_X, CAN_Y);  
-    
-    begin();
 
     current_highlight = -1;
     loading_bar.remove();
-    //current_load.remove();
+    current_load.remove();
     
     //can.circle(10,10,rayon).attr("fill", SOM_COUL);
  
+//    loading(2);
+
     for(i in pos_x) {
 	for(j in pos_x) {
 	    if(i!=j && matAdj[i][j]==true) {
@@ -133,7 +122,6 @@ var dessine = function(matAdj, pos_x, pos_y) {
 
 
 
-var begin = function(){
-    can = new Raphael(document.getElementById('can'), CAN_X, CAN_Y);  
-    loading_bar = can.rect(300, 200, 300, 400);
-}
+//var begin = function(){
+
+//}
