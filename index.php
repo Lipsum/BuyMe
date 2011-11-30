@@ -18,11 +18,11 @@
    <div id="login"><fb:login-button id="boutonlogin" value = "Connect with Facebook" autologoutlink="true" size="medium" background="white" length="short"></fb:login-button></div>
 
    <p id = "infos">Bienvenue sur BuyMe, un site innofensif. Connectez-vous sur Facebook.</p>
-   <div id="can"></div>
-   <div id= class="floatleft">
+   <div class="floatright">
    <img id = "img_ami" src="img/personne.png">
    <p id="infos_ami">Aucune information</p>
    </div>
+   <div id="can"></div>
 
    </body>
    </html>

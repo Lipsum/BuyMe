@@ -79,6 +79,7 @@ $(function(){
 		    graphe(amisTbl,nPers,nLiens);
 		    normalise(position_x,position_y);
 		    dessine(amisTbl, position_x,position_y);
+		    document.getElementById("infos").innerHTML = "Admirez le graphe de vos amis."
 		});
 
 	    FB.XFBML.parse();

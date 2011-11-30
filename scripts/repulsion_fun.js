@@ -17,10 +17,11 @@ var loading = function(step){
 	current_load.remove()	
     }
     current_load = can.rect(300, 200, 300, 200 + step*10);
-    console.log("load "+step);
+//    setTimeout("console.log(\"timeout\")", 0);
+//    console.log("load "+step);
     current_load.attr("fill", "red");
 //    document.getElementById("infos").innerHTML = "Chargement... " + step + " %";
-    $('infos').replaceWith('<div id = "infos">"Chargement... " + step + " %"</div>');
+//    $('div.infos').replaceWith('<div id = "infos">"Chargement... " + step + " %"</div>');
 }
 
 
@@ -31,12 +32,13 @@ function repulsion(delt, deltalength){
 
 function graphe(matrix, nb_v, nb_e){
     console.log("> graphe"+nb_v);
+    document.getElementById("infos").innerHTML = "Calcul de la posistion des sommets...";
     
     can = new Raphael(document.getElementById('can'), Largeur, Longueur);  
 
-    loading_bar = can.rect(300, 200, 300, 400);
+//    loading_bar = can.rect(300, 200, 300, 400);
 
-    var nbTours = 50;
+    var nbTours = 25;
     var global_energy = 0;
     forceConstant = 3*(Largeur * Longueur/nb_v)/4
     for (noeud in matrix){
@@ -46,7 +48,7 @@ function graphe(matrix, nb_v, nb_e){
 	velocity_y[noeud] = 0;
     }
     for(cmp = 0; cmp< nbTours; cmp++){
-	loading(cmp*100/nbTours);
+	//loading(cmp*100/nbTours);
 	global_energy = 0;
 	for (noeud in matrix){
 	    var net_force_x = 0;

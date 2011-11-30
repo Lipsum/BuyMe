@@ -9,17 +9,21 @@ body {
   text-align:center;
 }
 
-#can {
-    width: 700px;
-    border: 1px;
-    solid #aaa; 
-}
+#can
+{
+  width: 700px;
+  border: 1px;
+  solid #aaa; 
+  }
 
-.floatright { 
-              float: right;
-              padding: 2%;
-              margin-left: 2px;
-              margin-top: 2px;
-              width: 120px 
-              height: 90px;
-              }
+.floatright
+{ 
+  border-radius: 10px;
+  background-color: #aa0000;
+  float: right;
+  padding: 2%;
+  margin-left: 2px;
+  margin-top: 2px;
+  width: 100px;
+  height: 200px;
+}

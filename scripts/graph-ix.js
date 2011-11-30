@@ -44,7 +44,7 @@ var add_edges = function(ami1, ami2, objet){
 
 
 
-var normalise = function(pos_x,pos_y) {
+var normalise = function(pos_x, pos_y) {
 // met le dessin à l'échelle du canvas
     console.log("> normalise");
 
@@ -64,8 +64,8 @@ var normalise = function(pos_x,pos_y) {
 
     // mise à l'échelle :
     for(i in pos_x) {
-	pos_x[i] = (pos_x[i]-min_x)/(max_x-min_x)*CAN_X;
-	pos_y[i] = (pos_y[i]-min_y)/(max_y-min_y)*CAN_Y;
+	pos_x[i] = (pos_x[i] - min_x) / (max_x - min_x) * (CAN_X - 2 * rayon) + rayon;
+	pos_y[i] = (pos_y[i] - min_y) / (max_y - min_y) * (CAN_Y - 2 * rayon) +rayon;
     }
 
     console.log("< normalise");
@@ -74,11 +74,11 @@ var normalise = function(pos_x,pos_y) {
 var dessine = function(matAdj, pos_x, pos_y) {
 
     console.log("> dessine");
-
+    document.getElementById("infos").innerHTML = "Dessin du graphe...";
 
     current_highlight = -1;
-    loading_bar.remove();
-    current_load.remove();
+//    loading_bar.remove();
+//    current_load.remove();
     
     //can.circle(10,10,rayon).attr("fill", SOM_COUL);
  
