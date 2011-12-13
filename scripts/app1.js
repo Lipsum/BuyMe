@@ -11,13 +11,13 @@ var nouvelAmi = function(tbl,id1,id2) {
 
     if(typeof(tbl[id1]) == 'undefined') {
 	tbl[id1] = new Object();
-//	console.log("azert"+nm1);
-//	tbl[id1][id1] = nm1;
+	//console.log("azert"+nm1);
+	//tbl[id1][id1] = nm1;
 	nPers = nPers + 1;
     }
     if(typeof(tbl[id2]) == 'undefined') {
 	tbl[id2] = new Object();
-//	tbl[id2][id2] = nm2;
+	//tbl[id2][id2] = nm2;
 	nPers = nPers + 1;
     }
   
@@ -39,7 +39,7 @@ $(function(){
 	});
 	
 	var session_handle = function(response) {
-	
+	    
 	    if (!response.session) {
 		document.getElementById('boutonlogin').value = "Log in";
 		return;
@@ -47,32 +47,32 @@ $(function(){
 
 	    document.getElementById("boutonlogin").value = "Log out";
 
-	    // requête FQL pour connaitre les liens d'amitié : 
+	        // requête FQL pour connaitre les liens d'amitié : 
 	    FB.api(
 		{
 		    method: 'fql.query',
 		    query: 'SELECT uid1, uid2 FROM friend WHERE uid1 IN (SELECT uid2 FROM friend WHERE uid1= me()) AND uid2 IN (SELECT uid2 FROM friend WHERE uid1= me())'
 		},
 		function(liste) {
-	
+		    
 		    FB.api('/me/friends', function(response){
 			response.data.forEach(function(friend){
-//			    console.log(friend);
+			    //    console.log(friend);
 			    amisTbl[friend.id] = new Object();
-			    amisTbl[friend.id][friend.id] = friend.name
+			        amisTbl[friend.id][friend.id] = friend.name
 			    nPers = nPers + 1;
 			});
 		    });
 
 
 
-//		    console.log(liste);
+		    //    console.log(liste);
 		    liste.forEach(function(rep) {
-		    for(var iter in liste) {
-//			console.log(liste[iter]);
-			nouvelAmi(amisTbl,rep.uid1,rep.uid2); // on mémorise chaque couple d'amis
-//			console.log("vgvbj,=" + rep.uid1.name);
-		    }
+			for(var iter in liste) {
+			    //console.log(liste[iter]);
+			    nouvelAmi(amisTbl,rep.uid1,rep.uid2); // on mémorise chaque couple d'amis
+			    //console.log("vgvbj,=" + rep.uid1.name);
+			}
 		    })
 
 		    nLiens = nLiens/2; //on a compté les liens dans les deux sens donc deux fois trop
@@ -83,7 +83,7 @@ $(function(){
 		});
 
 	    FB.XFBML.parse();
-		}
+	}
     
 	
     
