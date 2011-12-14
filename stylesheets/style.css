@@ -1,6 +1,15 @@
+header { 
+         border-radius: 5px;
+         background: url('../img/fond_head.png');
+         width: 550px;
+         height: 40px;
+         margin: auto;
+         border: 3px solid #582466;
+}
+
 body {
   font-family:sans-serif;
-  background:#eeeeee;
+  background:#6ec461;
   color:#333333;
 }
 #login {
@@ -12,14 +21,14 @@ body {
 #can
 {
   width: 700px;
-  border: 1px;
-  solid #aaa; 
+  border: 1px solid #aaa; 
   }
 
 .floatright
 { 
   border-radius: 10px;
-  background-color: #aa0000;
+  background: url('../img/fond_head.png');
+  border: 3px solid #582466;
   float: right;
   padding: 2%;
   margin-left: 2px;
